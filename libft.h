@@ -37,8 +37,8 @@ typedef struct s_ops
 
 typedef struct s_stack
 {
-	int		*a;
-	int		*b;
+	int		*A;
+	int		*B;
 	int		size_a;
 	int		size_b;
 	t_ops	*ops;

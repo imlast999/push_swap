@@ -89,7 +89,7 @@ int	parsing_helper(t_stack *stack, char **split, int *i, int *error)
 	j = 0;
 	while (split[j])
 	{
-		stack->a[*i] = atoi_plus(split[j], error);
+		stack->A[*i] = atoi_plus(split[j], error);
 		if (*error == 1)
 		{
 			return (0);
