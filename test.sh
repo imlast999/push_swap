@@ -34,6 +34,18 @@ DISORDER_MODE=0
 DISORDER_TARGET=""
 DISORDER_TOLERANCE=0.05
 
+if [ -x "./checker_linux" ] && ./checker_linux --help &>/dev/null; then
+    CHECKER="./checker_linux"
+elif [ -x "./checker" ]; then
+    CHECKER="./checker"
+elif command -v python3 &>/dev/null && [ -f "./checker.py" ]; then
+    CHECKER="python3 ./checker.py"
+elif command -v python &>/dev/null && [ -f "./checker.py" ]; then
+    CHECKER="python ./checker.py"
+else
+    CHECKER="./checker_linux"
+fi
+
 # Usage function
 show_usage() {
     echo -e "${CYAN}${BOLD}"
@@ -170,10 +182,10 @@ disorder_perf_test() {
 
         if [ -n "$method_flag" ]; then
             ops=$(./push_swap $method_flag $ARG 2>/dev/null | wc -l)
-            result=$(./push_swap $method_flag $ARG 2>/dev/null | ./checker_linux $ARG 2>&1)
+            result=$(./push_swap $method_flag $ARG 2>/dev/null | $CHECKER $ARG 2>&1)
         else
             ops=$(./push_swap $ARG 2>/dev/null | wc -l)
-            result=$(./push_swap $ARG 2>/dev/null | ./checker_linux $ARG 2>&1)
+            result=$(./push_swap $ARG 2>/dev/null | $CHECKER $ARG 2>&1)
         fi
 
         total_ops=$((total_ops + ops))
@@ -492,10 +504,10 @@ run_valid_test() {
     fi
 
     if [ -n "$method_flag" ]; then
-        result=$(./push_swap $method_flag "${args[@]}" 2>/dev/null | ./checker_linux "${args[@]}" 2>&1)
+        result=$(./push_swap $method_flag "${args[@]}" 2>/dev/null | $CHECKER "${args[@]}" 2>&1)
         ops=$(./push_swap $method_flag "${args[@]}" 2>/dev/null | wc -l)
     else
-        result=$(./push_swap "${args[@]}" 2>/dev/null | ./checker_linux "${args[@]}" 2>&1)
+        result=$(./push_swap "${args[@]}" 2>/dev/null | $CHECKER "${args[@]}" 2>&1)
         ops=$(./push_swap "${args[@]}" 2>/dev/null | wc -l)
     fi
 
@@ -579,10 +591,10 @@ perf_test() {
 
         if [ -n "$method_flag" ]; then
             ops=$(./push_swap $method_flag $ARG 2>/dev/null | wc -l)
-            result=$(./push_swap $method_flag $ARG 2>/dev/null | ./checker_linux $ARG 2>&1)
+            result=$(./push_swap $method_flag $ARG 2>/dev/null | $CHECKER $ARG 2>&1)
         else
             ops=$(./push_swap $ARG 2>/dev/null | wc -l)
-            result=$(./push_swap $ARG 2>/dev/null | ./checker_linux $ARG 2>&1)
+            result=$(./push_swap $ARG 2>/dev/null | $CHECKER $ARG 2>&1)
         fi
 
         total_ops=$((total_ops + ops))
@@ -714,7 +726,7 @@ run_art_mode() {
     run_valid_test "--adaptive flag" 0 "--adaptive" 5 4 3 2 1
 
     TOTAL=$((TOTAL + 1))
-    local y=$(./push_swap 5 4 3 2 1 2>/dev/null | ./checker_linux 5 4 3 2 1 2>&1)
+    local y=$(./push_swap 5 4 3 2 1 2>/dev/null | $CHECKER 5 4 3 2 1 2>&1)
     if echo "$y" | grep -q "OK"; then
         echo -e "${GREEN}✓ PASS${NC} Default flag (no flag)"
         PASSED=$((PASSED + 1))
@@ -768,8 +780,10 @@ print_header
 # Compile
 print_section "COMPILATION"
 echo -e "${YELLOW}Compiling push_swap...${NC}"
-make re > /dev/null 2>&1
-if [ $? -eq 0 ]; then
+if command -v make &> /dev/null; then
+    make re > /dev/null 2>&1
+fi
+if [ -x "./push_swap" ] || [ -x "./push_swap.exe" ] || [ -f "./push_swap.exe" ]; then
     echo -e "${GREEN}✓ Compilation successful${NC}"
 else
     echo -e "${RED}✗ Compilation failed${NC}"
