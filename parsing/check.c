@@ -63,26 +63,18 @@ int	dup_check(int *A, int size)
 
 int	is_valid_numbers(int ac, char **av, int start)
 {
-	int	i;
+	char	**split;
 
 	(void)ac;
 	while (av[start])
 	{
-		i = 0;
-		if (av[start][0] == '\0')
+		split = ft_split(av[start], ' ');
+		if (split_str(split) == 0)
+		{
+			free_split(split);
 			return (0);
-		if (av[start][i] == '-')
-		{
-			i++;
-			if (av[start][i] == '\0')
-				return (0);
 		}
-		while (av[start][i])
-		{
-			if (!(av[start][i] >= '0' && av[start][i] <= '9'))
-				return (0);
-			i++;
-		}
+		free_split(split);
 		start++;
 	}
 	return (1);
