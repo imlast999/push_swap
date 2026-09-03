@@ -23,10 +23,10 @@ int	split_str(char **split)
 	while (split[i])
 	{
 		j = 0;
-		if (split[i][j] == '-')
+		if (split[i][j] == '+' || split[i][j] == '-')
 		{
 			j++;
-			if (split[i][j] == 0)
+			if (split[i][j] == '\0')
 				return (0);
 		}
 		while (split[i][j])

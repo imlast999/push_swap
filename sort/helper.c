@@ -50,9 +50,11 @@ int	atoi_plus(char *str, int *error)
 	result = 0;
 	while (str[i])
 	{
-		if (str[i] == '-' && a == 0)
+		if ((str[i] == '-' || str[i] == '+') && a == 0)
 		{
-			sign = -1;
+			if (str[i] == '-')
+				sign = -1;
+			a = 1;
 		}
 		else if (str[i] >= '0' && str[i] <= '9')
 		{
