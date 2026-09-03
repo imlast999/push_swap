@@ -83,18 +83,17 @@ int	is_valid_numbers(int ac, char **av, int start)
 int	is_sorted(int *A, int *size_a)
 {
 	int	i;
-	int	is_sorted;
 
+	if (!A || *size_a <= 1)
+		return (1);
 	i = 0;
 	while (i < *size_a - 1)
 	{
 		if (A[i] > A[i + 1])
-		{
-			is_sorted = 0;
-		}
+			return (0);
 		i++;
 	}
-	return (is_sorted);
+	return (1);
 }
 
 int	max_bits(int size)
