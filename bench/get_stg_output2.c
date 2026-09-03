@@ -14,25 +14,19 @@
 
 int	check_plain_numbers(int ac, char **av)
 {
-	int	i;
-	int	j;
+	int		i;
+	char	**split;
 
 	i = 1;
 	while (i < ac)
 	{
-		j = 0;
-		if (av[i][j] == '-')
+		split = ft_split(av[i], ' ');
+		if (split_str(split) == 0)
 		{
-			j++;
-			if (av[i][j] == '\0')
-				return (5);
+			free_split(split);
+			return (5);
 		}
-		while (av[i][j])
-		{
-			if (!(av[i][j] >= '0' && av[i][j] <= '9'))
-				return (5);
-			j++;
-		}
+		free_split(split);
 		i++;
 	}
 	return (6);

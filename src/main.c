@@ -14,20 +14,28 @@
 
 static int	parse_numbers(t_stack *stack, char **av, int start)
 {
-	int	i;
-	int	error;
+	int		i;
+	int		error;
+	char	**split;
 
 	error = 0;
 	i = 0;
-	while (av[start + i])
+	while (av[start])
 	{
-		stack->A[i] = atoi_plus(av[start + i], &error);
-		if (error == 1)
+		split = ft_split(av[start], ' ');
+		if (!split)
 		{
 			get_error(stack->A, stack->B);
 			return (0);
 		}
-		i++;
+		if (parsing_helper(stack, split, &i, &error) == 0)
+		{
+			free_split(split);
+			get_error(stack->A, stack->B);
+			return (0);
+		}
+		free_split(split);
+		start++;
 	}
 	return (1);
 }
@@ -86,7 +94,9 @@ static int	init_args(t_stack *stack, int ac, char **av, int *strategy)
 		ft_putstr_fd("Error\n", 2);
 		return (0);
 	}
-	stack->size_a = ac - start;
+	stack->size_a = count_all_numbers(av, start);
+	if (!stack->size_a)
+		return (0);
 	stack->size_b = 0;
 	return (start);
 }
