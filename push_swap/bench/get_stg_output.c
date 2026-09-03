@@ -69,7 +69,7 @@ char	*get_complexity(double disorder)
 	char	*complexity;
 
 	if (disorder < 0.2)
-		complexity = "O(n^2)";
+		complexity = "O(n)";
 	else if (disorder < 0.5)
 		complexity = "O(n sqrt(n))";
 	else

@@ -90,7 +90,7 @@ int	adaptive(t_stack *stack, int size)
 	disordr = disorder(stack->A, &stack->size_a);
 	if (disordr < 0.2)
 	{
-		simple_sort(stack);
+		linear_sort(stack);
 		a = 1;
 	}
 	else if (disordr < 0.5)

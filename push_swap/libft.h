@@ -68,6 +68,7 @@ void	rrr(t_stack *stack);
 void	sort_three(int *A, int *size_a, t_ops *ops);
 void	sort_four(t_stack *stack);
 void	simple_sort(t_stack *stack);
+void	linear_sort(t_stack *stack);
 int		medium_sort(t_stack *stack);
 int		complex_sort(t_stack *stack, int size);
 int		adaptive(t_stack *stack, int size);
