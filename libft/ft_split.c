@@ -91,7 +91,10 @@ char	**ft_split(char const *s, char c)
 		if (s[i])
 			split[word++] = fill_word(&s[i], c);
 		if (word > 0 && !split[word - 1])
-			return (free_split_partial(split, word - 1), NULL);
+		{
+			free_split_partial(split, word - 1);
+			return (NULL);
+		}
 		while (s[i] && s[i] != c)
 			i++;
 	}

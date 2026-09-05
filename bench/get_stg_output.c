@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "libft.h"
+#include "push_swap.h"
 
 int	counting(int *A, int *size_a)
 {
@@ -69,7 +69,7 @@ char	*get_complexity(double disorder)
 	char	*complexity;
 
 	if (disorder < 0.2)
-		complexity = "O(n)";
+		complexity = "O(n^2)";
 	else if (disorder < 0.5)
 		complexity = "O(n sqrt(n))";
 	else

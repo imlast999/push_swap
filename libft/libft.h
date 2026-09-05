@@ -1,13 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenich <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: efresnil <efresnil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/29 16:41:00 by abenich           #+#    #+#             */
-/*   Updated: 2026/08/29 16:44:00 by abenich          ###   ########.fr       */
+/*   Created: 2026/09/05 17:12:00 by efresnil          #+#    #+#             */
+/*   Updated: 2026/09/05 17:12:00 by efresnil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef LIBFT_LIBFT_H
+# define LIBFT_LIBFT_H
+
+# include "../libft.h"
+
+#endif
