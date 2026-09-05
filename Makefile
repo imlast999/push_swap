@@ -23,7 +23,7 @@ FILES = bench/bench_metrics.c bench/bench_report.c \
 		operations/ra.c operations/rra.c operations/rb.c operations/rrb.c \
 		operations/ss.c operations/rr.c operations/rrr.c \
 		sort/adaptive.c sort/linear_sort.c sort/chunk_sort.c sort/sort_small.c sort/sort_utils.c \
-		parsing/check.c parsing/parse_args.c parsing/parse_number.c parsing/free.c \
+		parsing/validation.c parsing/parse_args.c parsing/parse_number.c parsing/cleanup.c \
 		src/main.c src/dispatch.c
 
 OFILES = $(FILES:.c=.o)
