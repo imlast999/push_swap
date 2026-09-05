@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenich <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -26,14 +26,25 @@ void	ft_putdouble_fd(double n, int fd)
 	ft_putnbr_fd(decimal, fd);
 }
 
-int	ft_strcmp(const char *s1, const char *s2)
+static	int	parsing(int	*error, int digits, long result, int sign)
 {
-	int	i;
+	if (result > 214748364
+		|| (result == 214748364 && sign == 1 && digits > 7)
+		|| (result == 214748364 && sign == -1 && digits > 8))
+	{
+		*error = 1;
+		return (0);
+	}
+	return (1);
+}
 
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+static int	get_sign(char *str, int a, int i, int sign)
+{
+	if (str[i] == '-' && a == 0)
+		sign = -1;
+	else if (str[i] == '+' && a == 0)
+		sign = 1;
+	return (sign);
 }
 
 int	atoi_plus(char *str, int *error)
@@ -50,22 +61,12 @@ int	atoi_plus(char *str, int *error)
 	result = 0;
 	while (str[i])
 	{
-		if ((str[i] == '-' || str[i] == '+') && a == 0)
-		{
-			if (str[i] == '-')
-				sign = -1;
-			a = 1;
-		}
-		else if (str[i] >= '0' && str[i] <= '9')
+		sign = get_sign(str, a, i, sign);
+		if (str[i] >= '0' && str[i] <= '9')
 		{
 			digits = str[i] - '0';
-			if (result > 214748364
-				|| (result == 214748364 && sign == 1 && digits > 7)
-				|| (result == 214748364 && sign == -1 && digits > 8))
-			{
-				*error = 1;
+			if (parsing(error, digits, result, sign) == 0)
 				return (0);
-			}
 			result = result * 10 + digits;
 			a = 1;
 		}

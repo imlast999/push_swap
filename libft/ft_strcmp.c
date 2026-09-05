@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenich <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/02 11:17:59 by abenich           #+#    #+#             */
-/*   Updated: 2026/05/02 11:21:19 by abenich          ###   ########.fr       */
+/*   Created: 2026/09/05 19:20:00 by abenich           #+#    #+#             */
+/*   Updated: 2026/09/05 19:20:00 by abenich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_putendl_fd(char *s, int fd)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	ft_putstr_fd(s, fd);
-	ft_putchar_fd('\n', fd);
+	int	i;
+
+	i = 0;
+	while (s1[i] && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

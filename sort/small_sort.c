@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strategy.c                                         :+:      :+:    :+:   */
+/*   small_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenich <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -41,29 +41,29 @@ void	sort_three(int *A, int *size_a, t_ops *ops)
 static	void	helper_sort(t_stack *stack)
 {
 	pb(stack);
-	sort_three(stack->A, &stack->size_a, stack->ops);
+	sort_three(stack->a, &stack->size_a, stack->ops);
 	pa(stack);
 }
 
 void	sort_four(t_stack *stack)
 {
-	if (stack->A[0] > stack->A[3] && stack->A[1] > stack->A[3]
-		&& stack->A[2] > stack->A[3])
+	if (stack->a[0] > stack->a[3] && stack->a[1] > stack->a[3]
+		&& stack->a[2] > stack->a[3])
 	{
-		rra(stack->A, &stack->size_a, stack->ops);
+		rra(stack->a, &stack->size_a, stack->ops);
 		helper_sort(stack);
 	}
-	else if (stack->A[0] > stack->A[1] && stack->A[3] > stack->A[1]
-		&& stack->A[2] > stack->A[1])
+	else if (stack->a[0] > stack->a[1] && stack->a[3] > stack->a[1]
+		&& stack->a[2] > stack->a[1])
 	{
-		sa(stack->A, &stack->size_a, stack->ops);
+		sa(stack->a, &stack->size_a, stack->ops);
 		helper_sort(stack);
 	}
-	else if (stack->A[0] > stack->A[2] && stack->A[1] > stack->A[2]
-		&& stack->A[3] > stack->A[2])
+	else if (stack->a[0] > stack->a[2] && stack->a[1] > stack->a[2]
+		&& stack->a[3] > stack->a[2])
 	{
-		rra(stack->A, &stack->size_a, stack->ops);
-		rra(stack->A, &stack->size_a, stack->ops);
+		rra(stack->a, &stack->size_a, stack->ops);
+		rra(stack->a, &stack->size_a, stack->ops);
 		helper_sort(stack);
 	}
 	else

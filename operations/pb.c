@@ -32,14 +32,14 @@ void	pb(t_stack *stack)
 		return ;
 	while (x > 0)
 	{
-		stack->B[x] = stack->B[x - 1];
+		stack->b[x] = stack->b[x - 1];
 		x--;
 	}
-	stack->B[0] = stack->A[0];
+	stack->b[0] = stack->a[0];
 	x = 0;
 	while (i - 1 > x)
 	{
-		stack->A[x] = stack->A[x + 1];
+		stack->a[x] = stack->a[x + 1];
 		x++;
 	}
 	pb_helper(stack);

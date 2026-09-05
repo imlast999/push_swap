@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_move.c                                        :+:      :+:    :+:   */
+/*   sort_moves.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenich <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -104,7 +104,7 @@ void	b_to_a(t_stack *stack)
 {
 	while (stack->size_b > 0)
 	{
-		move_max_to_top(stack->B, &stack->size_b, stack->ops);
+		move_max_to_top(stack->b, &stack->size_b, stack->ops);
 		pa(stack);
 	}
 }

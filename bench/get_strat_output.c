@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_stg_output.c                                   :+:      :+:    :+:   */
+/*   get_strat_output.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenich <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 #include "push_swap.h"
 
 int	counting(int *A, int *size_a)
@@ -51,19 +49,6 @@ double	disorder(int *A, int *size_a)
 	return (disorder);
 }
 
-char	*get_stg(double disorder)
-{
-	char	*stg;
-
-	if (disorder < 0.2)
-		stg = "simple";
-	else if (disorder < 0.5)
-		stg = "medium";
-	else
-		stg = "complex";
-	return (stg);
-}
-
 char	*get_complexity(double disorder)
 {
 	char	*complexity;
@@ -79,8 +64,6 @@ char	*get_complexity(double disorder)
 
 int	get_bench_strategy(int ac, char **av)
 {
-	char	**split;
-
 	if (ac <= 2)
 		return (5);
 	if (ft_strcmp(av[2], "--simple") == 0)
@@ -91,12 +74,13 @@ int	get_bench_strategy(int ac, char **av)
 		return (3);
 	else if (ft_strcmp(av[2], "--adaptive") == 0)
 		return (4);
-	split = ft_split(av[2], ' ');
-	if (split_str(split) == 1)
+	else if ((av[2][0] >= '0' && av[2][0] <= '9')
+		|| av[2][0] == '+' || av[2][0] == '-')
 	{
-		free_split(split);
+		if ((av[2][0] == '-' || av[2][0] == '+' )
+			&& !(av[2][1] >= '0' && av[2][1] <= '9'))
+			return (5);
 		return (7);
 	}
-	free_split(split);
 	return (5);
 }

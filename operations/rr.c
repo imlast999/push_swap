@@ -31,11 +31,11 @@ void	rr(t_stack *stack)
 {
 	if (stack->size_a > 1)
 	{
-		rr_helper(stack->A, stack->size_a);
+		rr_helper(stack->a, stack->size_a);
 	}
 	if (stack->size_b > 1)
 	{
-		rr_helper(stack->B, stack->size_b);
+		rr_helper(stack->b, stack->size_b);
 	}
 	if (stack->size_b > 1 || stack->size_a > 1)
 	{

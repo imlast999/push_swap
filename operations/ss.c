@@ -18,15 +18,15 @@ void	ss(t_stack *stack)
 
 	if (stack->size_a > 1)
 	{
-		tmp = stack->A[0];
-		stack->A[0] = stack->A[1];
-		stack->A[1] = tmp;
+		tmp = stack->a[0];
+		stack->a[0] = stack->a[1];
+		stack->a[1] = tmp;
 	}
 	if (stack->size_b > 1)
 	{
-		tmp = stack->B[0];
-		stack->B[0] = stack->B[1];
-		stack->B[1] = tmp;
+		tmp = stack->b[0];
+		stack->b[0] = stack->b[1];
+		stack->b[1] = tmp;
 	}
 	if (stack->size_b > 1 || stack->size_a > 1)
 	{

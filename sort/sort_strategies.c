@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Adaptive.c                                         :+:      :+:    :+:   */
+/*   sort_strategies.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenich <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -19,14 +19,14 @@ void	simple_sort(t_stack *stack)
 	a = stack->size_a;
 	while (a > 4)
 	{
-		move_min_to_top(stack->A, &stack->size_a, stack->ops);
+		move_min_to_top(stack->a, &stack->size_a, stack->ops);
 		pb(stack);
 		a--;
 	}
 	if (a == 4)
 		sort_four(stack);
 	else if (a == 3)
-		sort_three(stack->A, &stack->size_a, stack->ops);
+		sort_three(stack->a, &stack->size_a, stack->ops);
 	while (stack->size_b > 0)
 	{
 		pa(stack);
@@ -37,7 +37,7 @@ int	medium_sort(t_stack *stack)
 {
 	int	*result;
 
-	result = ranking(stack->A, &stack->size_a);
+	result = ranking(stack->a, &stack->size_a);
 	if (result == NULL)
 		return (0);
 	chunking_a_b(stack);
@@ -52,10 +52,10 @@ static	void	process_bit(t_stack *stack, int size, int bit)
 	i = 0;
 	while (i < size)
 	{
-		if (((stack->A[0] >> bit) & 1) == 0)
+		if (((stack->a[0] >> bit) & 1) == 0)
 			pb(stack);
 		else
-			ra(stack->A, &stack->size_a, stack->ops);
+			ra(stack->a, &stack->size_a, stack->ops);
 		i++;
 	}
 	while (stack->size_b > 0)
@@ -69,7 +69,7 @@ int	complex_sort(t_stack *stack, int size)
 	int	*result;
 
 	bit = 0;
-	result = ranking(stack->A, &stack->size_a);
+	result = ranking(stack->a, &stack->size_a);
 	if (result == NULL)
 		return (0);
 	bits = max_bits(size);
@@ -87,7 +87,7 @@ int	adaptive(t_stack *stack, int size)
 	int		a;
 
 	a = 0;
-	disordr = disorder(stack->A, &stack->size_a);
+	disordr = disorder(stack->a, &stack->size_a);
 	if (disordr < 0.2)
 	{
 		linear_sort(stack);

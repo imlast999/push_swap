@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: efresnil <efresnil@student.42barcelon      +#+  +:+       +#+        */
+/*   By: abenich <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/02 17:46:52 by efresnil          #+#    #+#             */
-/*   Updated: 2026/09/02 17:46:56 by efresnil         ###   ########.fr       */
+/*   Created: 2026/08/29 20:58:00 by abenich           #+#    #+#             */
+/*   Updated: 2026/08/29 20:58:00 by abenich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,7 @@ char	**ft_split(char const *s, char c)
 		if (s[i])
 			split[word++] = fill_word(&s[i], c);
 		if (word > 0 && !split[word - 1])
-		{
-			free_split_partial(split, word - 1);
-			return (NULL);
-		}
+			return (free_split_partial(split, word - 1), NULL);
 		while (s[i] && s[i] != c)
 			i++;
 	}

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_helper.c                                      :+:      :+:    :+:   */
+/*   sort_dispatch.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenich <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -63,12 +63,12 @@ void	get_s_c(int strategy, char **stg, char **complexity, double disordr)
 	}
 	else if (strategy == 4 || strategy == 6 || strategy == 7)
 	{
-		*stg = get_stg(disordr);
+		*stg = "adaptive";
 		*complexity = get_complexity(disordr);
 	}
 }
 
-int	helper(t_stack *stack, int strategy, int size)
+int	run_selected_sort(t_stack *stack, int strategy, int size)
 {
 	if (strategy == 1)
 	{
@@ -90,16 +90,16 @@ int	sort_size(t_stack *stack, int strategy, int size)
 
 	if (size == 2)
 	{
-		if (stack->A[0] > stack->A[1])
-			sa(stack->A, &stack->size_a, stack->ops);
+		if (stack->a[0] > stack->a[1])
+			sa(stack->a, &stack->size_a, stack->ops);
 	}
 	else if (size == 3)
-		sort_three(stack->A, &stack->size_a, stack->ops);
+		sort_three(stack->a, &stack->size_a, stack->ops);
 	else if (size == 4)
 		sort_four(stack);
 	else if (size > 4)
 	{
-		result = helper(stack, strategy, size);
+		result = run_selected_sort(stack, strategy, size);
 		if (result == 0)
 			return (0);
 	}

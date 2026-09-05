@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_helper.c                                        :+:      :+:    :+:   */
+/*   chunk_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenich <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -69,15 +69,15 @@ void	process_chunk(t_stack *stack, int start, int end, int *i)
 	int	middle;
 
 	middle = start + (end - start) / 2;
-	if (stack->A[0] >= start && stack->A[0] < end)
+	if (stack->a[0] >= start && stack->a[0] < end)
 	{
 		pb(stack);
-		if (stack->B[0] < middle)
-			rb(stack->B, &stack->size_b, stack->ops);
+		if (stack->b[0] < middle)
+			rb(stack->b, &stack->size_b, stack->ops);
 		(*i)++;
 	}
 	else
-		ra(stack->A, &stack->size_a, stack->ops);
+		ra(stack->a, &stack->size_a, stack->ops);
 }
 
 void	chunking_a_b(t_stack *stack)

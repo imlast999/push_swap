@@ -33,12 +33,12 @@ void	rrr(t_stack *stack)
 	a = stack->size_a - 1;
 	if (stack->size_a > 1)
 	{
-		rrr_helper(stack->A, a);
+		rrr_helper(stack->a, a);
 	}
 	b = stack->size_b - 1;
 	if (stack->size_b > 1)
 	{
-		rrr_helper(stack->B, b);
+		rrr_helper(stack->b, b);
 	}
 	if (stack->size_b > 1 || stack->size_a > 1)
 	{

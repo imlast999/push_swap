@@ -14,24 +14,24 @@
 
 void	pa(t_stack *stack)
 {
-	int	a;
+	int	x;
 	int	b;
 	int	i;
 
 	i = 0;
-	a = stack->size_a;
+	x = stack->size_a;
 	b = stack->size_b;
 	if (stack->size_b == 0)
 		return ;
-	while (a > 0)
+	while (x > 0)
 	{
-		stack->A[a] = stack->A[a - 1];
-		a--;
+		stack->a[x] = stack->a[x - 1];
+		x--;
 	}
-	stack->A[0] = stack->B[0];
+	stack->a[0] = stack->b[0];
 	while (b - 1 > i)
 	{
-		stack->B[i] = stack->B[i + 1];
+		stack->b[i] = stack->b[i + 1];
 		i++;
 	}
 	(stack->size_a)++;

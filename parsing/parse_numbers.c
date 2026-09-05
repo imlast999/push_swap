@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_str.c                                        :+:      :+:    :+:   */
+/*   parse_numbers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: efresnil <efresnil@student.42barcelon      +#+  +:+       +#+        */
+/*   By: abenich <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/02 17:47:31 by efresnil          #+#    #+#             */
-/*   Updated: 2026/09/02 17:47:35 by efresnil         ###   ########.fr       */
+/*   Created: 2026/08/29 21:08:00 by abenich           #+#    #+#             */
+/*   Updated: 2026/08/29 21:08:00 by abenich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	split_str(char **split)
 	while (split[i])
 	{
 		j = 0;
-		if (split[i][j] == '+' || split[i][j] == '-')
+		if (split[i][j] == '-' || split[i][j] == '+')
 		{
 			j++;
-			if (split[i][j] == '\0')
+			if (split[i][j] == 0)
 				return (0);
 		}
 		while (split[i][j])
@@ -89,7 +89,7 @@ int	parsing_helper(t_stack *stack, char **split, int *i, int *error)
 	j = 0;
 	while (split[j])
 	{
-		stack->A[*i] = atoi_plus(split[j], error);
+		stack->a[*i] = atoi_plus(split[j], error);
 		if (*error == 1)
 		{
 			return (0);

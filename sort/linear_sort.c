@@ -55,21 +55,21 @@ static void	insert_back_to_a(t_stack *stack)
 
 	while (stack->size_b > 0)
 	{
-		pos = get_target_pos(stack->A, stack->size_a, stack->B[0]);
+		pos = get_target_pos(stack->a, stack->size_a, stack->b[0]);
 		if (pos <= stack->size_a / 2)
 		{
 			while (pos-- > 0)
-				ra(stack->A, &stack->size_a, stack->ops);
+				ra(stack->a, &stack->size_a, stack->ops);
 		}
 		else
 		{
 			pos = stack->size_a - pos;
 			while (pos-- > 0)
-				rra(stack->A, &stack->size_a, stack->ops);
+				rra(stack->a, &stack->size_a, stack->ops);
 		}
 		pa(stack);
 	}
-	move_min_to_top(stack->A, &stack->size_a, stack->ops);
+	move_min_to_top(stack->a, &stack->size_a, stack->ops);
 }
 
 void	linear_sort(t_stack *stack)
@@ -77,23 +77,23 @@ void	linear_sort(t_stack *stack)
 	int	n;
 	int	curr_max;
 
-	if (is_sorted(stack->A, &stack->size_a))
+	if (is_sorted(stack->a, &stack->size_a))
 		return ;
-	if (is_circular_sorted(stack->A, stack->size_a))
+	if (is_circular_sorted(stack->a, stack->size_a))
 	{
-		move_min_to_top(stack->A, &stack->size_a, stack->ops);
+		move_min_to_top(stack->a, &stack->size_a, stack->ops);
 		return ;
 	}
-	move_min_to_top(stack->A, &stack->size_a, stack->ops);
-	curr_max = stack->A[0];
-	ra(stack->A, &stack->size_a, stack->ops);
+	move_min_to_top(stack->a, &stack->size_a, stack->ops);
+	curr_max = stack->a[0];
+	ra(stack->a, &stack->size_a, stack->ops);
 	n = stack->size_a;
 	while (--n > 0)
 	{
-		if (stack->A[0] >= curr_max)
+		if (stack->a[0] >= curr_max)
 		{
-			curr_max = stack->A[0];
-			ra(stack->A, &stack->size_a, stack->ops);
+			curr_max = stack->a[0];
+			ra(stack->a, &stack->size_a, stack->ops);
 		}
 		else
 			pb(stack);
