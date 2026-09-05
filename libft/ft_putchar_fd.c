@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include "push_swap.h"
 
 void	ft_putchar_fd(char c, int fd)
 {
