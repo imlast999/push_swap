@@ -18,12 +18,13 @@ CFLAGS = -Wall -Wextra -Werror -I.
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-FILES = bench/get_stg_output.c bench/get_stg_output2.c \
+FILES = bench/bench_metrics.c bench/bench_report.c \
 		operations/sa.c operations/sb.c operations/pb.c operations/pa.c \
 		operations/ra.c operations/rra.c operations/rb.c operations/rrb.c \
-		operations/ss.c operations/rr.c operations/rrr.c operations/op_helper.c \
-		sort/strategy.c src/main.c parsing/check.c sort/find_move.c \
-		sort/Adaptive.c sort/linear_sort.c src/main_helper.c parsing/free.c sort/helper.c
+		operations/ss.c operations/rr.c operations/rrr.c \
+		sort/adaptive.c sort/linear_sort.c sort/chunk_sort.c sort/sort_small.c sort/sort_utils.c \
+		parsing/check.c parsing/parse_args.c parsing/parse_number.c parsing/free.c \
+		src/main.c src/dispatch.c
 
 OFILES = $(FILES:.c=.o)
 
