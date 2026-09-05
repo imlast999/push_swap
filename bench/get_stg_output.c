@@ -79,6 +79,8 @@ char	*get_complexity(double disorder)
 
 int	get_bench_strategy(int ac, char **av)
 {
+	char	**split;
+
 	if (ac <= 2)
 		return (5);
 	if (ft_strcmp(av[2], "--simple") == 0)
@@ -89,11 +91,12 @@ int	get_bench_strategy(int ac, char **av)
 		return (3);
 	else if (ft_strcmp(av[2], "--adaptive") == 0)
 		return (4);
-	else if ((av[2][0] >= '0' && av[2][0] <= '9') || av[2][0] == '-')
+	split = ft_split(av[2], ' ');
+	if (split_str(split) == 1)
 	{
-		if (av[2][0] == '-' && !(av[2][1] >= '0' && av[2][1] <= '9'))
-			return (5);
+		free_split(split);
 		return (7);
 	}
+	free_split(split);
 	return (5);
 }
